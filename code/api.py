@@ -7,7 +7,7 @@ app = Flask(__name__)
 q = None
 with open("quotes.json") as f:
     q = json.load(f)
-@app.route('/')
+@app.route('/thoughtapi')
 def hello():
     print "type is " + str(type(q[random.randint(0,len(q)-1)]))
     return q[random.randint(0,len(q)-1)]["quoteText"]
