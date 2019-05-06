@@ -13,8 +13,9 @@ pool:
 variables:
 - group: docker
 - name: dockerPassword
-
+- name: acrRepo
+- name: acrUSer
 steps:
 - script: |
     echo $(dockerPassword)
-    docker login -u $(dockerId) -p $(pswd) $(dockerId).azurecr.io
+    docker login -u $(acrUSer) -p $(dockerPassword) $(acrRepo).azurecr.io
