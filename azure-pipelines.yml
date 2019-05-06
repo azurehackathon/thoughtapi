@@ -2,8 +2,8 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-#docker build -t $(dockerId).azurecr.io/$(imageName):$(buildNo) .
-#docker push $(dockerId).azurecr.io/$(imageName):$(buildNo)
+#
+#
 trigger:
 - master
 
@@ -12,7 +12,10 @@ pool:
   
 variables:
 - group: docker
+- name: imageName
+  value: thought-api
 steps:
 - script: |
-    echo $(dockerPassword)
+    docker build -t $(acrRepo).azurecr.io/$(imageName):$(Build.BuildNumber) .
     docker login -u $(acrUser) -p $(dockerPassword) $(acrRepo).azurecr.io
+    docker push $(acrRepo).azurecr.io/$(imageName):$(Build.BuildNumber)
