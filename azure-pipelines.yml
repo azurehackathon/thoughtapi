@@ -9,10 +9,9 @@ trigger:
 
 pool:
   vmImage: 'Ubuntu-16.04'
-
+  
 variables:
- acrUser: euw030devmgmtacr
- acrRepo: euw030devmgmtacr
+- group: docker
 steps:
 - script: |
     echo $(dockerPassword)
