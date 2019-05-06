@@ -12,7 +12,7 @@ pool:
 
 variables:
  acrUSer: euw030devmgmtacr
-
+ acrRepo: euw030devmgmtacr
 steps:
 - script: |
     echo $(dockerPassword)
