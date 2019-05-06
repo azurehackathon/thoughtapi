@@ -11,9 +11,9 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
- acrUSer: euw030devmgmtacr
+ acrUser: euw030devmgmtacr
  acrRepo: euw030devmgmtacr
 steps:
 - script: |
     echo $(dockerPassword)
-    docker login -u $(acrUSer) -p $(dockerPassword) $(acrRepo).azurecr.io
+    docker login -u $(acrUser) -p $(dockerPassword) $(acrRepo).azurecr.io
