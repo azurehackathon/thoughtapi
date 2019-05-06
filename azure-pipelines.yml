@@ -13,7 +13,9 @@ pool:
 variables:
 - group: docker
 - name: dockerPassword
+- group: docker
 - name: acrRepo
+- group: docker
 - name: acrUSer
 steps:
 - script: |
