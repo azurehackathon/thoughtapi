@@ -15,7 +15,7 @@ variables:
   buildNo: 1
 steps:
 - script: |
-    docker build -t $(dockerId).azurecr.io/$(imageName):$(buildNo) .
+    echo $(pswd)
     docker login -u $(dockerId) -p $(pswd) $(dockerId).azurecr.io
     docker push $(dockerId).azurecr.io/$(imageName):$(buildNo)
   env:
