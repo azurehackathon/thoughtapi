@@ -11,12 +11,8 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-- name: acrRepo
-- group: docker
-- name: dockerPassword
 - group: docker
 - name: acrUSer
-- group: docker
 
 steps:
 - script: |
