@@ -13,9 +13,9 @@ variables:
 - group: docker
 steps:
 - script: |
-    docker build -t $(dockerRepo)/$(Build.Repository.Name):$(Build.BuildNumber) .
-    docker build -t $(dockerRepo)/$(Build.Repository.Name):latest .
+    docker build -t $(dockerRepo)/thought-api:$(Build.BuildNumber) .
+    docker build -t $(dockerRepo)/thought-api:latest .
     docker login -u $(dockerUser) -p $(dockerPassword) $(dockerRepo).azurecs.io
-    docker push $(dockerRepo)/$(Build.Repository.Name):$(Build.BuildNumber)
-    docker push $(dockerRepo)/$(Build.Repository.Name):latest
+    docker push $(dockerRepo)/thought-api:$(Build.BuildNumber)
+    docker push $(dockerRepo)/thought-api:latest
   displayName: 'Build and push to docker repo'
