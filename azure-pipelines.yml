@@ -15,7 +15,7 @@ steps:
 - script: |
     docker build -t $(dockerRepo)/thought-api:$(Build.BuildNumber) .
     docker build -t $(dockerRepo)/thought-api:latest .
-    docker login -u $(dockerUser) -p $(dockerPassword) $(dockerRepo).azurecs.io
+    docker login -u $(dockerUser) -p $(dockerPassword) $(dockerRepo)
     docker push $(dockerRepo)/thought-api:$(Build.BuildNumber)
     docker push $(dockerRepo)/thought-api:latest
   displayName: 'Build and push to docker repo'
