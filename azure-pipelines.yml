@@ -9,11 +9,11 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
+variables:
+- group: docker
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    docker build -t $(dockerRepo)/$(Build.Repository.Name):$(Build.BuildNumber) .
+    docker login -u $(dockerUser) -p $(dockerPassword) $(dockerRepo).azurecs.io
+    docker push $(dockerRepo)/$(Build.Repository.Name):$(Build.BuildNumber)
+  displayName: 'Build and push to docker repo'
