@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: thought-api
+spec:
+  replicas: 3
+  selector:
+    app: thought-api
+  template:
+    metadata:
+      name: thought-api
+      labels:
+        app: thought-api
+    spec:
+      containers:
+      - name: thought-api
+        image: thought-api
+        ports:
+        - containerPort: 9000
