@@ -14,6 +14,8 @@ variables:
 steps:
 - script: |
     docker build -t $(dockerRepo)/$(Build.Repository.Name):$(Build.BuildNumber) .
+    docker build -t $(dockerRepo)/$(Build.Repository.Name):latest .
     docker login -u $(dockerUser) -p $(dockerPassword) $(dockerRepo).azurecs.io
     docker push $(dockerRepo)/$(Build.Repository.Name):$(Build.BuildNumber)
+    docker push $(dockerRepo)/$(Build.Repository.Name):latest
   displayName: 'Build and push to docker repo'
