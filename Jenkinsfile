@@ -5,8 +5,10 @@ pipeline {
             agent {
               label "docker_slave"
             }
-            container('docker') {
-                sh 'docker build -t euwmgmt030cdoacr.azurecr.io/thought-api .'
+            steps {
+                container('docker') {
+                    sh 'docker build -t euwmgmt030cdoacr.azurecr.io/thought-api .'
+                }
             }
         }
     }
