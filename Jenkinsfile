@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    environment {
+        ENV = "dev"
+    }
     stages {
         stage('Build') {
             agent {
