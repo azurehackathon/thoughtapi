@@ -2,10 +2,10 @@ pipeline {
     agent any
     environment {
         ENV = "dev"
-        BETA_IP_AKS_1 = "52.169.231.177"
-        BETA_IP_AKS_2 = "40.85.74.99"
-        LIVE_IP_AKS_1 = "40.87.134.50"
-        LIVE_IP_AKS_2 = "13.95.29.175"
+        BETA_IP_AKS_1 = "http://52.169.231.177/healthcheck"
+        BETA_IP_AKS_2 = "http://40.85.74.99/healthcheck"
+        LIVE_IP_AKS_1 = "http://40.87.134.50/healthcheck"
+        LIVE_IP_AKS_2 = "http://13.95.29.175/healthcheck"
     }
     parameters {
          string(defaultValue: "DEV", description: 'Environment to deploy to?', name: 'ENV')
