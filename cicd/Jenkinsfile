@@ -7,12 +7,7 @@ pipeline {
         BETA_IP_AKS_2 = "52.178.6.130"
         LIVE_IP_AKS_1 = "40.87.134.50"
         LIVE_IP_AKS_2 = "13.95.29.175"
-=======
-        BETA_IP_AKS_1 = "http://52.169.231.177/healthcheck"
-        BETA_IP_AKS_2 = "http://40.85.74.99/healthcheck"
-        LIVE_IP_AKS_1 = "http://40.87.134.50/healthcheck"
-        LIVE_IP_AKS_2 = "http://13.95.29.175/healthcheck"
->>>>>>> 841cacc76d1410dc9ccddb2423f829a6d1236381
+
     }
     parameters {
          string(defaultValue: "DEV", description: 'Environment to deploy to?', name: 'ENV')
@@ -21,8 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                     echo "Building....."
-                    sh "sudo docker build -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER} ."
-                    sh "sudo docker push azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER}"
+                    sh "sudo docker build -t skdeep12/thoughtapi:${BUILD_NUMBER} ."
+                    sh "sudo docker push skdeep12/thoughtapi:${BUILD_NUMBER}"
             }
         }
         stage('Deploy BETA') {
