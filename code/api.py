@@ -2,6 +2,7 @@ from flask import Flask
 import requests
 import random 
 import json
+import os
 app = Flask(__name__)
 
 q = None
@@ -12,6 +13,11 @@ def hello():
     print "type is " + str(type(q[random.randint(0,len(q)-1)]))
     return q[random.randint(0,len(q)-1)]["quoteText"]
 
+@app.route('/healthcheck')
+def health():
+    d = {}
+    d["BUILD_NUMBER"] = os.environ['BUILD_NUMBER']
+    return json.dumps(d)
 
 
 if __name__ == '__main__':
