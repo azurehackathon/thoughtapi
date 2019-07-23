@@ -15,8 +15,10 @@ pipeline {
             }
         }
         stage('Deploy BETA') {
-            steps {
-                    echo "Deploying BETA....."
+            steps{
+                git branch: 'master',
+                    url: 'https://github.com/azurehackathon/cdorchestrator.git'
+                echo "Success"
             }
         }
         stage('Test Beta Services ') {
