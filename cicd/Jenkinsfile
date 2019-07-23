@@ -3,7 +3,7 @@ pipeline {
     environment {
         ENV = "dev"
         BETA_IP_AKS_1 = "52.169.231.177"
-        BETA_IP_AKS_2 = "40.85.74.99"
+        BETA_IP_AKS_2 = "52.178.6.130"
         LIVE_IP_AKS_1 = "40.87.134.50"
         LIVE_IP_AKS_2 = "13.95.29.175"
     }
@@ -25,7 +25,7 @@ pipeline {
                 echo "Success"
                 sh "go run manifest-generation/service_temp.go -SERVICE_NAME=beta -APP_NAME=app1 -ENV=dev -TYPE=type1 -APP_GROUP=group1 -CONTAINER_PORT=80 -BUILD_NUMBER=${BUILD_NUMBER} -PUBLIC_IP=${BETA_IP_AKS_1}"
                 sh "go run manifest-generation/service_temp.go -SERVICE_NAME=beta -APP_NAME=app1 -ENV=dev -TYPE=type1 -APP_GROUP=group1 -CONTAINER_PORT=80 -BUILD_NUMBER=${BUILD_NUMBER} -PUBLIC_IP=${BETA_IP_AKS_2}"
-                sh "go run manifest-generation/rc_temp.go -APP_NAME=app1 -ENV=dev -TYPE=type1 -VOLUMES=volume1 -APP_GROUP=group1 -CONTAINER_PORT=80 -BUILD_NUMBER=${BUILD_NUMBER} -REPLICA-COUNT=2 -VOLUME-MOUNTS=vol_mount -ARGS=arg -MEMORY_REQUESTS=64Mi -CPU_REQUESTS=250m -MEMORY_LIMITS=128Mi -CPU_LIMITS=500m"
+                sh "go run manifest-generation/rc_temp.go -APP_NAME=app1 -ENV=dev -VOLUMES=volume1 -APP_GROUP=group1 -CONTAINER_PORT=80 -BUILD_NUMBER=${BUILD_NUMBER} -REPLICA_COUNT=2 -VOLUME_MOUNTS=vol_mount -ARGS=arg -MEMORY_REQUESTS=64Mi -CPU_REQUESTS=250m -MEMORY_LIMITS=128Mi -CPU_LIMITS=500m"
             }
         }
         stage('Test Beta Services ') {
