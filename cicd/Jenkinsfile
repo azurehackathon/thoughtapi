@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
         ENV = "dev"
-
+        GOROOT="/usr/local/go"
+        PATH="$PATH:/usr/local/go"
         BETA_IP_AKS_1 = "52.169.231.177"
         BETA_IP_AKS_2 = "52.178.6.130"
         LIVE_IP_AKS_1 = "40.87.134.50"
