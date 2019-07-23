@@ -8,13 +8,28 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent {
-              label "docker_slave"
-            }
             steps {
-                container('docker') {
-                    sh 'docker build -t azurehackathon.azurecr.io/thought-api .'
-                }
+                    echo "Building....."
+            }
+        }
+        stage('Deploy BETA') {
+            steps {
+                    echo "Deploying BETA....."
+            }
+        }
+        stage('Test Beta Services ') {
+            steps {
+                    echo "Testing Beta....."
+            }
+        }
+        stage('Deploy LIVE') {
+            steps {
+                    echo "Deploying LIVE....."
+            }
+        }
+        stage('Test LIVE') {
+            steps {
+                    echo "Testing Live....."
             }
         }
     }
