@@ -15,7 +15,7 @@ pipeline {
             steps {
                     echo "Building....."
                     sh "sudo docker build -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER} ."
-                    sh "sudo docker push -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER}"
+                    sh "sudo docker push azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER}"
             }
         }
         stage('Deploy BETA') {
