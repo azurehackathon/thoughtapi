@@ -35,7 +35,7 @@ pipeline {
                 git branch: 'master',
                     url: 'https://github.com/azurehackathon/cdorchestrator.git'
                 echo "Success"
-                sh "go run deployment-validator/main.go $BUILD_NUMBER http://${BETA_IP_AKS_1}/healthcheck" http://${BETA_IP_AKS_2}/healthcheck""
+                sh "go run deployment-validator/main.go $BUILD_NUMBER http://${BETA_IP_AKS_1}/healthcheck http://${BETA_IP_AKS_2}/healthcheck"
             }
         }
         stage('Deploy LIVE') {
