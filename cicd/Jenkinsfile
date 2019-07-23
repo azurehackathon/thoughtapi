@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     environment {
         ENV = "dev"
     }
@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                    echo "Building....."
                     sh "docker build -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER} ."
                     sh "docker push -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER}"
             }
