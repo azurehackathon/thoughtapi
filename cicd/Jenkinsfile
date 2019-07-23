@@ -2,10 +2,17 @@ pipeline {
     agent any
     environment {
         ENV = "dev"
+
         BETA_IP_AKS_1 = "52.169.231.177"
         BETA_IP_AKS_2 = "52.178.6.130"
         LIVE_IP_AKS_1 = "40.87.134.50"
         LIVE_IP_AKS_2 = "13.95.29.175"
+=======
+        BETA_IP_AKS_1 = "http://52.169.231.177/healthcheck"
+        BETA_IP_AKS_2 = "http://40.85.74.99/healthcheck"
+        LIVE_IP_AKS_1 = "http://40.87.134.50/healthcheck"
+        LIVE_IP_AKS_2 = "http://13.95.29.175/healthcheck"
+>>>>>>> 841cacc76d1410dc9ccddb2423f829a6d1236381
     }
     parameters {
          string(defaultValue: "DEV", description: 'Environment to deploy to?', name: 'ENV')
@@ -15,7 +22,7 @@ pipeline {
             steps {
                     echo "Building....."
                     sh "sudo docker build -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER} ."
-                    sh "sudo docker push -t azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER}"
+                    sh "sudo docker push azureHackathon.azurecr.io/thoughtapi:${BUILD_NUMBER}"
             }
         }
         stage('Deploy BETA') {
@@ -33,7 +40,7 @@ pipeline {
                 git branch: 'master',
                     url: 'https://github.com/azurehackathon/cdorchestrator.git'
                 echo "Success"
-                sh "go run deployment-validator/main.go $BUILD_NUMBER ${BETA_IP_AKS_1} ${BETA_IP_AKS_2}"
+                sh "go run deployment-validator/main.go $BUILD_NUMBER http://${BETA_IP_AKS_1}/healthcheck" http://${BETA_IP_AKS_2}/healthcheck""
             }
         }
         stage('Deploy LIVE') {
@@ -49,7 +56,7 @@ pipeline {
                 git branch: 'master',
                     url: 'https://github.com/azurehackathon/cdorchestrator.git'
                 echo "Success"
-                sh "go run deployment-validator/main.go $BUILD_NUMBER ${LIVE_IP_AKS_1} ${LIVE_IP_AKS_2}"
+                sh "go run deployment-validator/main.go $BUILD_NUMBER http://${LIVE_IP_AKS_1}/healthcheck http://${LIVE_IP_AKS_2}/healthcheck"
             }
         }
     }
